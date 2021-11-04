@@ -1,0 +1,20 @@
+table,th,td{
+    border-collapse:collapse;
+    border: 1px solid black;
+}
+th{
+    background-color: aquamarine;
+}
+
+tr:nth-child(even){
+    background-color: lightgray;
+}
+
+tr:hover {
+    background-color:hotpink;
+}
+td a.tablelink{
+    display: block;
+    height: 100%;
+    width: 100%;
+}

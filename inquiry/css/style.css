@@ -1,0 +1,28 @@
+body{
+    background-color: rgb(183, 228, 183);
+}
+p{
+    color: red;
+    text-align: center;
+}
+
+#wrapper{ 
+    width: 500px;
+    margin: auto; 
+    background-color: cornsilk;
+}
+#error{
+    color: red;
+    text-align: center;
+}
+h1{
+    text-align: center; 
+}
+table{
+    margin-left: auto;
+    margin-right: auto;
+}
+#botton{
+    margin-top: 10px;
+    text-align: center;
+}

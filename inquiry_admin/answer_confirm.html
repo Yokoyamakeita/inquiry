@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ回答確認画面</title>
+</head>
+<body>
+        <h1>お問い合わせ詳細</h1>
+        <span class="label">お名前：</span>
+        <span class="data">$$$name$$$</span>
+        <br />
+        <span class="label">メールアドレス：</span>
+        <span class="data">$$$mail$$$</span>
+        <br />
+        <span class="label">お問い合わせ内容：</span>
+        <span class="data">$$$inquiry$$$</span>
+        <br />
+        <span class="label">登録日時：</span>
+        <span class="data">$$$created_at$$$</span>
+        <br />
+        <span class="label">更新日時：</span>
+        <span class="data">$$$updated_at$$$</span>
+        <br />
+        <br />
+        <span class="label">回答：</span>
+        <span class="data">$$$answer$$$</span>
+        <br />
+        <br />
+        <form action="answer_complete.php">
+            <input type="submit" value="登録">
+            <input type="submit" formaction="detail.php" value="編集">
+        </form>
+    </body>
+</html>

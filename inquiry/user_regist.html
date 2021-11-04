@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>お問い合わせ入力</title>
+</head>
+<body>
+    <h1>ユーザー新規登録</h1>
+    <p class="error_message">$$$error_message$$$</p>
+    <br />
+    <br />
+    <form action="user_regist_confirm.php">
+        <ul>
+            <li>
+                <label>お名前</label>
+                <input type="text" name="name" value="$$$name$$$">
+            </li>
+            <li>
+                <label>メールアドレス</label>
+                <input type="text" name="mail" value="$$$mail$$$">
+            </li>
+            <li>
+                <label>パスワード</label>
+                <input type="password" name="password" value="">
+            </li>
+            <li>
+                <label>パスワード（確認用）</label>
+                <input type="password" name="password_confirm" value="">
+            </li>
+        </ul>
+        <button type="submit">入力確認</button>
+        <button type="submit" formaction="login.php">ログインページ</button>
+    </from>
+</body>
+</html>

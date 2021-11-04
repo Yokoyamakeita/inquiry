@@ -1,0 +1,293 @@
+﻿# A5:ER FORMAT:14
+# A5:ER ENCODING:UTF8
+# A5:ER Mk-1 Copyright (C)2007 m.matsubara
+# A5:SQL Mk-2 Copyright (C)1997 m.matsubara
+#  https://a5m2.mmatsubara.com
+
+[Manager]
+ProjectName=
+Author=
+MaxEntityRowShow=1000
+ReadOnlyRecommend=0
+Page=Main
+PageInfo="Main",7,"A3Landscape",$FFFFFF
+LogicalView=1
+DecodeDomain=0
+ViewModePageIndividually=1
+ViewMode=7
+ViewFormat=0
+UseNondependenceDashLine=0
+FontName=Tahoma
+FontSize=14
+PaperSize=A4Landscape
+HeaderLeft=
+HeaderCenter=
+HeaderRight=
+FooterLeft=
+FooterCenter=
+FooterRight=
+ShowPageoutRelation=1
+RDBMSType=5
+RDBMSTypeName=MySQL
+GenerateDropTableStatement=1
+DropTableIfExists=1
+DefaultPkName=%0:s_PKC
+DefaultPkIndexName=%0:s_PKI
+DefaultIndexName=%0:s_IX%1:d
+DefaultFkName=%0:s_FK%1:d
+SqlSeparator=0
+UpperCaseKeyword=0
+ShowTag=1
+ShowCommonAttributes=0
+
+[Entity]
+PName=inquiries
+LName=お問い合わせ一覧
+Comment=
+TableOption=
+Page=MAIN
+Left=1400
+Top=850
+Field="お問い合わせID","id","int(11)","NOT NULL",0,"","",$000028FF,"auto_increment"
+Field="ログインユーザーID","login_users_id","int(11)","NOT NULL",,"","",$FFFFFFFF,""
+Field="登録日時","created_at","timestamp",,,"CURRENT_TIMESTAMP","",$00FF4100,""
+Field="更新日時","updated_at","timestamp",,,"CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP","",$00FF4100,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20211022151701
+Position="MAIN",1400,850,1023,417
+ZOrder=1
+
+[Entity]
+PName=answers
+LName=回答一覧
+Comment=
+TableOption=
+Page=MAIN
+Left=2800
+Top=900
+Field="回答ID","id","int(11)","NOT NULL",0,"","",$000028FF,"auto_increment"
+Field="お問い合わせID","inquiries_id","int(11)","NOT NULL",,"","",$006BA135,""
+Field="回答","answer","text","NOT NULL",,"","",$FFFFFFFF,""
+Field="登録日時","created_at","timestamp",,,"CURRENT_TIMESTAMP","",$00FF4100,""
+Field="更新日時","updated_at","timestamp",,,"CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP","",$00FF4100,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20210820135639
+Position="MAIN",2800,900
+ZOrder=2
+
+[Relation]
+Entity1=inquiries
+Entity2=answers
+RelationType1=2
+RelationType2=3
+Fields1=id
+Fields2=inquiries_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,5455,8720,6090,R,R,""
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20210820132930
+LineMode=0
+Bar1=546
+Bar2=872
+Bar3=609
+TermPos1=R
+TermPos2=R
+ZOrder=3
+
+[Entity]
+PName=comments
+LName=ユーザー発言一覧
+Comment=
+TableOption=
+Page=MAIN
+Left=1400
+Top=1650
+Field="発言ID","id","int(11)","NOT NULL",0,"","",$000028FF,"auto_increment"
+Field="お問い合わせID","inquiries_id","int(11)","NOT NULL",,"","",$006BA135,""
+Field="発言","comment","text",,,"","",$FFFFFFFF,""
+Field="登録日時","created_at","timestamp",,,"CURRENT_TIMESTAMP","",$00FF4100,""
+Field="更新日時","updated_at","timestamp",,,"CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP","",$00FF4100,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20210820141750
+Position="MAIN",1400,1650
+ZOrder=6
+
+[Relation]
+Entity1=inquiries
+Entity2=comments
+RelationType1=2
+RelationType2=3
+Fields1=id
+Fields2=inquiries_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,2477,7523,2625,R,R,""
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20210820140302
+LineMode=0
+Bar1=248
+Bar2=752
+Bar3=262
+TermPos1=R
+TermPos2=R
+ZOrder=8
+
+[Entity]
+PName=comment_answer_links
+LName=発言ー回答　リンクテーブル
+Comment=
+TableOption=
+Page=MAIN
+Left=2800
+Top=1650
+Field="リンクID","id","int(11)","NOT NULL",0,"","",$000028FF,"auto_increment"
+Field="発言ID","comments_id","int(11)","NOT NULL",,"","",$006BA135,""
+Field="回答ID","answers_id","int(11)","NOT NULL",,"","",$006BA135,""
+Field="登録日時","created_at","timestamp","NOT NULL",,"CURRENT_TIMESTAMP","",$00FF4100,""
+Field="更新日時","updated_at","timestamp",,,"CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP","",$00FF4100,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20210910151537
+Position="MAIN",2800,1650,931,316
+ZOrder=9
+
+[Relation]
+Entity1=comments
+Entity2=comment_answer_links
+RelationType1=2
+RelationType2=3
+Fields1=id
+Fields2=comments_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,5875,4125,5870,R,R,""
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20210820140644
+LineMode=0
+Bar1=588
+Bar2=412
+Bar3=587
+TermPos1=R
+TermPos2=R
+ZOrder=10
+
+[Relation]
+Entity1=answers
+Entity2=comment_answer_links
+RelationType1=2
+RelationType2=3
+Fields1=id
+Fields2=answers_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,5744,2783,7582,R,R,""
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20210820140710
+LineMode=0
+Bar1=574
+Bar2=278
+Bar3=758
+TermPos1=R
+TermPos2=R
+ZOrder=11
+
+[Entity]
+PName=login_users
+LName=ログインユーザー一覧
+Comment=
+TableOption=
+Page=MAIN
+Left=100
+Top=200
+Field="ログインユーザーID","id","int(11)","NOT NULL",0,"","",$000028FF,"auto_increment"
+Field="ログインID","login_id","varchar(255)","NOT NULL",,"","",$FFFFFFFF,""
+Field="パスワードハッシュ","password","varchar(255)","NOT NULL",,"","",$FFFFFFFF,""
+Field="登録日時","created_at","timestamp",,,"CURRENT_TIMESTAMP","",$00FF4100,""
+Field="更新日時","updated_at","timestamp",,,"CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP","",$00FF4100,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20211022151233
+Position="MAIN",100,200
+ZOrder=12
+
+[Entity]
+PName=user_details
+LName=ログインユーザー詳細
+Comment=
+TableOption=
+Page=MAIN
+Left=100
+Top=900
+Field="ユーザーID","id","int(11)","NOT NULL",0,"","",$000028FF,"auto_increment"
+Field="ログインユーザーID","login_users_id","int(11)","NOT NULL",,"","",$FFFFFFFF,""
+Field="名前","name","varchar(32)","NOT NULL",,"","",$FFFFFFFF,""
+Field="メールアドレス","mail","varchar(255)","NOT NULL",,"","",$FFFFFFFF,""
+Field="登録日時","created_at","timestamp",,,"CURRENT_TIMESTAMP","",$00FF4100,""
+Field="更新日時","updated_at","timestamp",,,"CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP","",$00FF4100,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20211022151454
+Position="MAIN",100,900
+ZOrder=13
+
+[Relation]
+Entity1=login_users
+Entity2=user_details
+RelationType1=2
+RelationType2=1
+Fields1=id
+Fields2=login_users_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,1568,8432,1506,R,R,""
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20211022151624
+LineMode=0
+Bar1=157
+Bar2=843
+Bar3=151
+TermPos1=R
+TermPos2=R
+ZOrder=14
+
+[Relation]
+Entity1=login_users
+Entity2=inquiries
+RelationType1=2
+RelationType2=3
+Fields1=id
+Fields2=login_users_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,3788,5550,2204,R,R,""
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20211022151729
+LineMode=0
+Bar1=379
+Bar2=555
+Bar3=220
+TermPos1=R
+TermPos2=R
+ZOrder=15
