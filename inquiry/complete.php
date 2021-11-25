@@ -2,6 +2,9 @@
 // セッション変数の利用を宣言する
 session_start();
 
+// ログイン認証処理 (セッション変数を利用すること）
+require_once( 'inc/auth.inc.php' );
+
 // 利用する変数を初期化する
 $name = '';
 $mail = '';
@@ -26,21 +29,25 @@ if ( isset( $_SESSION['inquiry'] ) ) {
     unset( $_SESSION['inquiry'] );
 }
 
-
 // !!! 取得した値をデータベースに登録する
 // !!! エラーがでたらエラーメッセージを出力する
-$dbh = new PDO( 'mysql:host=localhost;dbname=inquiry', 'iqadmin', 'password' );
 
-// 問合せ一覧に登録する
-try{
-     // データベースのエラー発生時に例外を発行するようにする
+// DB接続処理
+require_once( 'inc/db.inc.php' );
+
+// データベースにデータを登録する
+
+try {
+    // データベースのエラー発生時に例外を発行するようにする
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // トランザクションを開始する
     $dbh->beginTransaction();
-    
+
+// 問合せ一覧に登録する
     // データを登録するSQLを設定する(問合せ一覧)
     $sql = 'INSERT INTO inquiries ( name, mail ) VALUES( :name, :mail );';
+
     // データベースに事前にSQLを登録する
     $statement = $dbh->prepare( $sql );
 
@@ -69,14 +76,16 @@ try{
     // SQLを実行する（結果は使わない）
     $statement->execute();
 
-    $dbh->commit();
+// データベースにコミットする
+    $dbh->commit();    
 
-}catch(Exception $e){
-     // データベースエラーなので、ロールバックする
-    $dbh->roolback();
-    // エラーメッセージを表示
-    echo "データベースエラー".$e->getMessage();
+} catch ( Exception $e ) {
+    // データベースエラーなので、ロールバックする
+    $dbh->rollback();
+    // XXX エラーメッセージを表示する
+    echo "データベースエラー" . $e->getMessage();
 }
+
 
 
 // テンプレートとなるhtmlファイルを読み込む

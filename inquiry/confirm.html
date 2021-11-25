@@ -1,40 +1,22 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <title>お問い合わせ確認</title>
-</head>
-<body>
-    <div id="wrapper">
-    <h1>お問い合わせ確認画面</h1>
-
-    <table>
-        <tr>
-        <th><span class="label">お名前:</span></th>
-        <td><span class="data">$$$name$$$</span></td>
-        </tr>
-        <tr>
-        <th><span class="label">メールアドレス:</span></th>
-        <td><span class="data">$$$mail$$$</span></td>
-        </tr>
-        <tr>
-        <th><span class="label">お問い合わせ内容：</span></th>
-        <td><span class="data">$$$inquiry$$$</span></td>
-        </tr>
-        <tr>
-        <td colspan="2">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1>確認</h1>
+        <span class="label">お名前：</span>
+        <span class="data">$$$name$$$</span>
+        <br />
+        <span class="label">メールアドレス：</span>
+        <span class="data">$$$mail$$$</span>
+        <br />
+        <span class="label">お問い合わせ内容：</span>
+        <span class="data">$$$inquiry$$$</span>
+        <br />
         <form action="complete.php">
-            <div id="botton">
             <input type="submit" value="登録">
             <input type="submit" formaction="input.php" value="修正">
-            </div>
         </form>
-        </td>
-        </tr>
-    </table>
-    </div>
-</body>
+    </body>
 </html>

@@ -2,41 +2,54 @@
 // セッション変数の利用を宣言する
 session_start();
 
+// ログイン認証処理 (セッション変数を利用すること）
+require_once( 'inc/auth.inc.php' );
+
 // 変数を初期化する
 $error_message = '';
-$answer = '';
 $id = '';
+$answer = '';
 
-
-// GETパラメータ取得する
-$answer = $_GET["answer"];
-
-// セッションより該当データのIDを取得する
-$id = $_SESSION["id"];
-
-// 取得したパラメータをセッションに保存する
-$_SESSION['answer'] = $answer;
-
-// !!! 入力値のチェックはここでする
-if ( empty( $answer ) ) {
-    // !!! 入力値でエラーが出る場合は、ここで入力画面に戻る
-    header( 'Location: detail.php' );
-    exit;
+// IDを受け取る
+if ( !isset( $_GET["id"] ) ) {
+    if ( !isset( $_SESSION["id"] ) ) {
+        // GETパラメータにもSESSION変数にもIDがなければエラー
+        header( 'Location: inquiry_list.php' );
+        exit;
+    } else {
+        // セッション変数からIDを取得する
+        $id = $_SESSION["id"];
+    }
+} else {
+    // GETパラメーターからIDを取得する
+    $id = $_GET["id"];
+    // idをセッション変数に登録する
+    $_SESSION['id'] = $id;
 }
 
+
+// 確認画面から戻ってきた場合に、セッション変数から回答を受け取る
+if ( isset( $_SESSION["answer"] ) ) {
+    $answer = $_SESSION["answer"];
+    // 使わないセッション変数は消しておく
+    unset( $_SESSION["answer"] );
+}
+
+
 // データベースに接続して、問い合わせのデータを取得する
-// データベースに接続する
-require_once( '../inquiry/inc/db.inc.php' );
-// データを登録するSQLを設定する
+// DB接続処理
+require_once( 'inc/db.inc.php' );
+
 try {
     // データベースのエラー発生時に例外を発行するようにする
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // データを登録するSQLを設定する
+    // 問合せ一覧を取得する
+    // データを取得するSQLを設定する
     $sql = 'SELECT  iq.id AS id, 
                     ud.name AS name,  
                     ud.mail AS mail,  
-                    comment AS inquiry,
+                    cm.comment AS inquiry,
                     iq.created_at AS created_at, 
                     iq.updated_at AS updated_at 
                 FROM inquiries AS iq 
@@ -49,7 +62,7 @@ try {
                         user_details AS ud 
                         ON ud.login_users_id = lu.id
                 WHERE iq.id = :id;';
-
+    
     // データベースに事前にSQLを登録する
     $statement = $dbh->prepare( $sql );
 
@@ -70,7 +83,7 @@ try {
 
 
 // テンプレートとなるhtmlファイルを読み込む
-$html = file_get_contents( 'answer_confirm.html' );
+$html = file_get_contents( 'inquiry_detail.html' );
 
 // htmlファイルの変更したい部分を変換する
 $html = str_replace( '$$$error_message$$$', htmlspecialchars( $error_message ), $html );
@@ -81,6 +94,7 @@ $html = str_replace( '$$$created_at$$$', htmlspecialchars( $result['created_at']
 $html = str_replace( '$$$updated_at$$$', htmlspecialchars( $result['updated_at'] ), $html );
 
 $html = str_replace( '$$$answer$$$', htmlspecialchars( $answer ), $html );
+
 
 
 // 変換したhtmlを表示する

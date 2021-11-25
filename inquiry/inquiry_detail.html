@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/default.css">
+    </head>
+    <body>
+        <h1>問合せ・回答詳細</h1>
+        <p class="error_message">$$$error_message$$$</p>
+        <br />
+        <span class="label">お名前：</span>
+        <span class="data">$$$name$$$</span>
+        <br />
+        <span class="label">メールアドレス：</span>
+        <span class="data">$$$mail$$$</span>
+        <br />
+        <span class="label">お問い合わせ内容：</span>
+        <span class="data">$$$inquiry$$$</span>
+        <br />
+        <span class="label">登録日時：</span>
+        <span class="data">$$$created_at$$$</span>
+        <br />
+        <span class="label">更新日時：</span>
+        <span class="data">$$$updated_at$$$</span>
+        <br />
+        <br />
+        <form action="reply_confirm.php">
+            <label>返信：</label>
+            <input type="text" name="answer" value="$$$answer$$$">
+            <br />
+            <br />
+            <input type="submit" value="確認">
+            <input type="submit" formaction="inquiry_list.php" value="一覧に戻る">
+        </form>
+        <br />
+        <br />
+        <a href="index.php">ユーザートップへ</a>
+    </body>
+</html>

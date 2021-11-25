@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/default.css">
+    </head>
+    <body>
+        <h1>問合せ・回答一覧</h1>
+        <p class="error_message">$$$error_message$$$</p>
+        <br />
+        <table>
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>お客様名</th>
+                    <th>メールアドレス</th>
+                    <th>お問い合わせ内容</th>
+                    <th>登録日時</th>
+                    <th>更新日時</th>
+                </tr>
+            </thead>
+            <tbody>
+###loop###
+                <tr>
+                    <td>$$$id$$$</td>
+                    <td><a href="inquiry_detail.php?id=$$$id$$$" class="tablelink">$$$name$$$</a></td>
+                    <td>$$$mail$$$</td>
+                    <td>$$$inquiry$$$</td>
+                    <td>$$$created_at$$$</td>
+                    <td>$$$updated_at$$$</td>
+                </tr>
+###/loop###
+            </tbody>
+        </table>
+        <br />
+        <br />
+        <a href="index.php">ユーザートップへ</a>
+    </body>
+</html>

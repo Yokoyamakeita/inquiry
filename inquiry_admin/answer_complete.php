@@ -22,7 +22,7 @@ if ( isset( $_SESSION['answer'] ) ) {
 
 // !!! 取得した値をデータベースに登録する
 // !!! エラーがでたらエラーメッセージを出力する
-$dbh = new PDO( 'mysql:host=localhost;dbname=inquiry', 'iqadmin', 'password' );
+require_once( '../inquiry/inc/db.inc.php' );
 
 // データベースにデータを登録する
 

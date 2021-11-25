@@ -1,20 +1,23 @@
 <?php
-
-// セッション変数の使用を宣言
+// セッション変数の利用を宣言する
 session_start();
 
-// 利用する変数の初期化
-$name ='';
-$mail ='';
-$inquiry ='';
-$error_message ='';
+// ログイン認証処理 (セッション変数を利用すること）
+require_once( 'inc/auth.inc.php' );
 
-// エラーで飛んできたか判定する ←confirm.phpのチェックから
-if (isset($_SESSION['name'])){
-    if (empty($_SESSION['name']) || empty($_SESSION['mail']) || empty($_SESSION['inquiry'])){
-        $error_message ='※入力されていない項目があります';
+//var_dump( $_SESSION );
+
+// 利用する変数を初期化する
+$name = '';
+$mail = '';
+$inquiry = '';
+$error_message = '';
+
+// エラーで飛んできたか判定する
+if ( isset( $_SESSION['name'] ) ) {
+    if ( empty( $_SESSION['name'] ) || empty( $_SESSION['mail'] ) || empty( $_SESSION['inquiry'] ) ) {
+        $error_message = '入力されていない項目があります';
     }
-    
     // セッション変数から値を取得する
     $name = $_SESSION['name'];
     // 利用したセッション変数を削除する
@@ -40,6 +43,3 @@ $html = str_replace( '$$$inquiry$$$', htmlspecialchars( $inquiry ), $html );
 
 // 変換したhtmlを表示する
 print( $html );
-
-
-
